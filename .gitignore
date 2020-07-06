@@ -11,3 +11,13 @@ vendor/
 .DS_Store
 *.lock
 .phpunit*
+.env.example
+.gitlab-ci.yml
+.php_cs
+.phpstorm.meta.php
+Dockerfile
+README.md
+config
+deploy.test.yml
+phpunit.xml
+test
