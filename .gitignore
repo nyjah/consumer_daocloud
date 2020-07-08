@@ -21,3 +21,4 @@ config
 deploy.test.yml
 phpunit.xml
 test
+watch
