@@ -78,7 +78,6 @@ class WxController extends BaseController
         } else {
             //添加会员卡
             $rule = MemberIntegralRule::query()->where('store_id', $this->store_id)->first()->toArray();
-            var_dump($rule);
             $merInsert = [
                 'integral' => $rule['reg'],
                 'shop_id' => $shop_id,
