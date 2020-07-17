@@ -63,7 +63,7 @@ class WxController extends BaseController
             return $this->response->fail(10001, 'code参数不能为空');
         }
         $res = $this->wxServer->getAuth((int)$this->store_id, $code);
-        var_dump($res);
+
         if (isset($res['errcode'])) {
             return $this->response->fail($res['errcode'], $res['errmsg']);
         }
@@ -71,17 +71,10 @@ class WxController extends BaseController
         //添加会员
         /** @var User $user */
         $user = User::query()->where('openid', $res['openid'])->first()->toArray();
-        var_dump($user);
         if (!empty($user)) {
             $res['uid'] = $user['user_id'];
-            $res['new_user'] = true;
-            if ($res['reg_time'] - time() > 604800) {//超过一周
-                $res['new_user'] = false;
-            }
             $order = Order::query()->where('user_id', $user['user_id'])->first()->toArray();
-            if (!empty($order)) {
-                $res['new_user'] = false;
-            }
+            $res['new_user'] = empty($order) ? true : false;
         } else {
             //添加会员卡
             $rule = MemberIntegralRule::query()->where('store_id', $this->store_id)->first()->toArray();
