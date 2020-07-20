@@ -56,4 +56,10 @@ class User extends Model
     protected $casts = ['user_id' => 'integer', 'store_id' => 'integer', 'shop_id' => 'integer', 'platform' => 'integer', 'sex' => 'integer', 'birthday' => 'integer', 'user_money' => 'float', 'commission' => 'integer', 'freeze_commission' => 'integer', 'total_commission' => 'integer', 'reg_time' => 'integer', 'last_login' => 'integer', 'bee_id' => 'integer'];
 
     public $timestamps = false;
+
+    public function member()
+    {
+//        return $this->hasOne(Member::class, 'user_id', 'member_id');
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
 }

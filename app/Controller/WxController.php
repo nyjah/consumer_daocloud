@@ -103,4 +103,29 @@ class WxController extends BaseController
         return $this->response->success($res);
     }
 
+    public function isNew()
+    {
+        $uid = $this->request->input('uid');
+        $order = Order::query()->where('user_id', $uid)->first()->toArray();
+        $isNew = empty($order) ? true : false;
+
+        return $this->response->success([$isNew]);
+    }
+
+    public function getUserInfo()
+    {
+        $uid = $this->request->input('uid');
+
+        $user = User::query()
+            ->where('user_id', $uid)
+            ->first();
+        if ($user == null) {
+            return $this->response->success();
+        }
+        if ($user->member->integral == null || $user->member->integral < 0) {
+            $user->member->integral = 0;
+        }
+
+        return $this->response->success($user);
+    }
 }

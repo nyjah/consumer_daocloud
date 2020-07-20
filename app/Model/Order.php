@@ -99,7 +99,7 @@ class Order extends Model
 
     public function orderGoods()
     {
-        return $this->hasOne(OrderGood::class, 'order_id', 'order_id');
+        return $this->hasMany(OrderGood::class, 'order_id', 'order_id');
     }
 
 }
