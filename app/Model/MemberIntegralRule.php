@@ -1,21 +1,19 @@
 <?php
 
 declare (strict_types=1);
-
 namespace App\Model;
 
 use Hyperf\DbConnection\Model\Model;
-
 /**
- * @property int $id
- * @property int $store_id
- * @property int $gift
- * @property int $shop
- * @property int $shop_once
- * @property int $comment
- * @property int $login
- * @property int $share
- * @property int $reg
+ * @property int $id 
+ * @property int $store_id 
+ * @property int $gift 
+ * @property int $shop 
+ * @property int $shop_once 
+ * @property int $comment 
+ * @property int $login 
+ * @property int $share 
+ * @property int $reg 
  */
 class MemberIntegralRule extends Model
 {
@@ -37,6 +35,5 @@ class MemberIntegralRule extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'store_id' => 'integer', 'gift' => 'integer', 'shop' => 'integer', 'shop_once' => 'integer', 'comment' => 'integer', 'login' => 'integer', 'share' => 'integer', 'reg' => 'integer'];
-
     public $timestamps = false;
 }

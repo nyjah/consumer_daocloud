@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\CommonServer;
 
 
-use App\Model\StoreDevConfig;
+use App\Dao\StoreDevConfigDao;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Utils\Context;
 use EasyWeChat\Factory;
@@ -22,7 +22,7 @@ class WxServer
 
     /**
      * @Inject
-     * @var StoreDevConfig
+     * @var StoreDevConfigDao
      */
     private $storeConfig;
 

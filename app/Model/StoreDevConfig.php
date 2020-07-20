@@ -4,10 +4,6 @@ declare (strict_types=1);
 
 namespace App\Model;
 
-use Hyperf\Cache\Annotation\CachePut;
-use Hyperf\Cache\Annotation\Cacheable;
-use Hyperf\DbConnection\Db;
-use Hyperf\DbConnection\Model\Model;
 
 /**
  * @property int $id
@@ -71,32 +67,5 @@ class StoreDevConfig extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'store_id' => 'integer', 'ali_opreate_rate' => 'float', 'wx_accesstoken_expire' => 'integer', 'wx_isv_mch_id' => 'integer', 'wx_sub_mch_id' => 'integer', 'wx_profit_share_rate' => 'float', 'wx_fee_rate' => 'float', 'wx_opreate_rate' => 'float'];
-
     public $timestamps = false;
-
-    /**
-     * @Cacheable(prefix="storeDevConfig",ttl=86400,value="_#{store_id}")
-     */
-    public function getStoreConfig($store_id)
-    {
-        $res = Db::table('store_dev_config')
-            ->where('store_id', $store_id)
-            ->first();
-
-        return $res;
-    }
-
-    /**
-     * @CachePut(prefix="storeDevConfig",ttl=86400,value="_#{store_id}")
-     */
-    public function upStoreConfig($store_id, $expires_in, $access_token): void
-    {
-        Db::table('store_dev_config')
-            ->where('store_id', $store_id)
-            ->update([
-                'wx_accesstoken_expire' => $expires_in + time(),
-                'wx_accesstoken' => $access_token]);
-
-    }
-
 }

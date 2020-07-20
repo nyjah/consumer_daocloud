@@ -128,4 +128,43 @@ class WxController extends BaseController
 
         return $this->response->success($user);
     }
+
+    public function decryptData()
+    {
+        $session = $this->request->input('session');
+        $iv = $this->request->input('iv');
+        $encryptedData = $this->request->input('encryptedData');
+        if (!$session || !$iv || !$encryptedData) {
+            return $this->response->fail(10001, 'session or iv or encryptedData required');
+        }
+
+        $decryptedData = $this->appMini->encryptor->decryptData($session, $iv, $encryptedData);
+
+        return $this->response->success(['decryptedData' => $decryptedData]);
+    }
+
+    public function reciveUserInfo()
+    {
+        $avatar = $this->request->input('avatarUrl');
+        $nickName = $this->request->input('nickName');
+        $sex = $this->request->input('gender', 0);
+        $uid = $this->request->input('uid');
+        $mobile = $this->request->input('mobile', '');
+        //todo 过滤nick_name特殊符号
+        if ($nickName) {
+            $nickName = preg_replace("/[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}]/u", "", $nickName);
+        }
+        $where = [
+            'avatar' => $avatar,
+            'sex' => intval($sex),
+            'nick_name' => $nickName
+        ];
+        if ($mobile != '') {
+            $where['mobile'] = $mobile;
+        }
+        Db::table('users')
+            ->where('user_id', $uid)
+            ->update($where);
+        return $this->response->success();
+    }
 }
