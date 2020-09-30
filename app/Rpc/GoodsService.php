@@ -9,6 +9,7 @@ use Hyperf\RpcServer\Annotation\RpcService;
 
 class GoodsService implements GoodsServiceInterface {
 	public function add(int $a, $b):int {
+
 		return $a+$b;
 	}
 }
