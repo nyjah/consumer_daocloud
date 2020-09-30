@@ -1,20 +1,20 @@
 <?php
 
 declare (strict_types=1);
+
 namespace App\Model;
 
-use Hyperf\DbConnection\Model\Model;
 /**
- * @property int $id 
- * @property string $form_id 
- * @property string $module 
- * @property int $module_id 
- * @property int $user_id 
- * @property int $sec_kill_good_id 
- * @property int $deleted 
- * @property int $create_time 
- * @property int $deal 
- * @property int $deal_num 
+ * @property int $id
+ * @property string $form_id
+ * @property string $module
+ * @property int $module_id
+ * @property int $user_id
+ * @property int $sec_kill_good_id
+ * @property int $deleted
+ * @property int $create_time
+ * @property int $deal
+ * @property int $deal_num
  */
 class ActivityNotice extends Model
 {

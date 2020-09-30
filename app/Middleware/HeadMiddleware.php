@@ -70,33 +70,32 @@ class HeadMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $this->response = $this->container->get(Response::class);
-        $authorization = $request->getHeader('authorization');
-        $client_type = $request->getHeader('client_type');
-        $store_id = $request->getHeader('store_id');
-        $uid = $request->getHeader('uid');
+        $authorization = $request->getHeaderLine('authorization');
+        $client_type = $request->getHeaderLine('client_type');
+        $store_id = $request->getHeaderLine('store_id');
         $act = $request->getUri()->getPath();
 
 
         //判断是GETTOKEN请求其实还需要做个初步令牌验证而不是直接放行
         if ($act != '/index/getToken') {
-            if (empty($authorization[0])) {
+            if (empty($authorization)) {
                 return $this->response->fail(40001, 'parmas of head invalid');
             } else {
-                Context::set('authorization', $authorization[0]);
+                Context::set('authorization', $authorization);
             }
         }
-        if (empty($client_type[0]) || empty($store_id[0])) {
+        if (empty($client_type) || empty($store_id)) {
             return $this->response->fail(40001, 'parmas of head invalid1');
         }
-        Context::set('client_type', $client_type[0]);
-        Context::set('store_id', $store_id[0]);
+        Context::set('client_type', $client_type);
+        Context::set('store_id', $store_id);
         if (!in_array($act, $this->ignoreAct)) {
 
             if ($act != 'getApiLink' && (!$client_type || !$store_id)) {
                 return $this->response->fail(40001, 'errmsg');
             }
 
-            $payload = $this->toolServer->verifyToken($authorization[0]);
+            $payload = $this->toolServer->verifyToken($authorization);
 
             if ($payload == false) {
                 return $this->response->fail(40001, '异常消息访问令牌不合法！');

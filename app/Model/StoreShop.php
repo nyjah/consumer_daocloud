@@ -1,43 +1,43 @@
 <?php
 
 declare (strict_types=1);
+
 namespace App\Model;
 
-use Hyperf\DbConnection\Model\Model;
 /**
- * @property int $id 
- * @property string $addr 
- * @property string $name 
- * @property int $store_id 
- * @property string $position 
- * @property string $amap_gid 
- * @property int $enable_fence 
- * @property int $province_id 
- * @property int $city_id 
- * @property int $area_id 
- * @property int $max_distance 
- * @property float $min_delivery_price 
- * @property string $business_hours 
- * @property string $telephone 
- * @property float $lng 
- * @property float $lat 
- * @property string $self_take 
- * @property int $delivery_company_id 
- * @property float $freight 
- * @property float $full_discount 
- * @property int $pay_module 
- * @property int $create_time 
- * @property int $is_del 
- * @property string $send_day 
- * @property string $erp_shop_id 
- * @property string $send_times 
- * @property string $shops_code 
- * @property string $shops_code_fn 
- * @property string $shops_code_kp 
- * @property string $delivery_dispose 
- * @property int $subsidy_type 
- * @property string $subsidy_expression 
- * @property float $shopping_bag_price 
+ * @property int $id
+ * @property string $addr
+ * @property string $name
+ * @property int $store_id
+ * @property string $position
+ * @property string $amap_gid
+ * @property int $enable_fence
+ * @property int $province_id
+ * @property int $city_id
+ * @property int $area_id
+ * @property int $max_distance
+ * @property float $min_delivery_price
+ * @property string $business_hours
+ * @property string $telephone
+ * @property float $lng
+ * @property float $lat
+ * @property string $self_take
+ * @property int $delivery_company_id
+ * @property float $freight
+ * @property float $full_discount
+ * @property int $pay_module
+ * @property int $create_time
+ * @property int $is_del
+ * @property string $send_day
+ * @property string $erp_shop_id
+ * @property string $send_times
+ * @property string $shops_code
+ * @property string $shops_code_fn
+ * @property string $shops_code_kp
+ * @property string $delivery_dispose
+ * @property int $subsidy_type
+ * @property string $subsidy_expression
+ * @property float $shopping_bag_price
  */
 class StoreShop extends Model
 {

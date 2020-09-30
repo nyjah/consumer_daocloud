@@ -10,6 +10,7 @@ use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use App\CommonServer\ToolServer;
 use App\Middleware\HeadMiddleware;
+use App\Rpc\GoodsService;
 
 /**
  * @AutoController()
@@ -28,6 +29,12 @@ class IndexController extends BaseController
      */
     private $toolServer;
 
+    /**
+     * @Inject
+     * @var GoodsService
+     */
+    private $GoodsService;
+
 
     public function __get($name)
     {
@@ -45,7 +52,8 @@ class IndexController extends BaseController
 
     public function index()
     {
-        return time();
+//        return time();
+        return $this->GoodsService->add(1, 2);
     }
 
     public function getToken()
